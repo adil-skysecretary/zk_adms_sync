@@ -4,6 +4,9 @@
     'category': 'Human Resources',
     'summary': 'Receive ADMS attendance push logs from biometric devices',
     'depends': ['base', 'hr_attendance'],
+    'data': [
+        'views/hr_employee_views.xml',
+    ],
     'installable': True,
     'application': False,
     'license': 'LGPL-3',
