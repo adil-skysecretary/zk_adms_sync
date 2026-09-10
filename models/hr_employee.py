@@ -7,5 +7,6 @@ class HrEmployee(models.Model):
         string='Biometric Device ID',
         copy=False,
         index=True,
-        help="User ID / PIN registered on the physical biometric device"
+        help="User ID / PIN registered on the physical biometric device",
+        groups="hr.group_hr_user"
     )
