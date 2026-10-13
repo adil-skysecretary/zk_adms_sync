@@ -4,16 +4,12 @@ class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     biometric_id = fields.Char(
-        string='Biometric Device ID',
-        copy=False,
+        string='Biometric User ID',
         index=True,
-        help="User ID / PIN registered on the physical biometric device",
-        groups="hr.group_hr_user"
+        help="PIN / User ID registered on the physical biometric device"
     )
-    biometric_device_sn = fields.Char(
-        string='Machine Serial Number (SN)',
-        copy=False,
-        index=True,
-        help="The Serial Number of the physical machine this employee uses. Found in the device URL (SN=...).",
-        groups="hr.group_hr_user"
+    biometric_device_id = fields.Many2one(
+        'zk.biometric.device',
+        string='Assigned Biometric Machine',
+        help="Select the physical device assigned to this employee"
     )
