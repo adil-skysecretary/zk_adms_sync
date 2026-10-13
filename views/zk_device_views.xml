@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <form string="Biometric Device">
                 <header>
-                    <button name="action_clear_device_logs" type="object" string="Clear Device Attendance" confirm="Are you sure? This will wipe all attendance records from the physical machine." class="btn-danger"/>
+<!--                    <button name="action_clear_device_logs" type="object" string="Clear Device Attendance" confirm="Are you sure? This will wipe all attendance records from the physical machine." class="btn-danger"/>-->
                     <field name="state" widget="statusbar" statusbar_visible="online,offline"/>
                 </header>
                 <sheet>

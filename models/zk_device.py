@@ -38,8 +38,8 @@ class ZkBiometricDevice(models.Model):
             else:
                 device.state = 'offline'
 
-    def action_clear_device_logs(self):
-        """ Queues a command to clear the physical device's attendance logs """
-        for device in self:
-            # ADMS command syntax to clear attendance logs
-            device.pending_command = "DATA UPDATE INFO \t CLEAR LOG"
+    # def action_clear_device_logs(self):
+    #     """ Queues a command to clear the physical device's attendance logs """
+    #     for device in self:
+    #         # ADMS command syntax to clear attendance logs
+    #         device.pending_command = "DATA UPDATE INFO \t CLEAR LOG"
