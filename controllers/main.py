@@ -165,12 +165,16 @@ class ZKTecoADMSController(http.Controller):
             Attendance.create({
                 'employee_id': employee.id,
                 'check_in': punch_time,
+                'in_mode': 'biometric',
             })
 
         # Condition: Explicit Check-Out ('1'), OR an open shift is pending
         elif punch_state == '1' or (last_punch and not last_punch.check_out):
             if last_punch.check_in != punch_time:
-                last_punch.write({'check_out': punch_time})
+                last_punch.write({
+                    'check_out': punch_time,
+                    'out_mode': 'biometric',
+                })
 
     # =========================================================================
     # 2. Heartbeat Endpoint: Updates Status and Dispatches Remote Commands
