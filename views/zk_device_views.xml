@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_zk_biometric_device_form" model="ir.ui.view">
+        <field name="name">zk.biometric.device.form</field>
+        <field name="model">zk.biometric.device</field>
+        <field name="arch" type="xml">
+            <form string="Biometric Device">
+                <header>
+                    <button name="action_clear_device_logs" type="object" string="Clear Device Attendance" confirm="Are you sure? This will wipe all attendance records from the physical machine." class="btn-danger"/>
+                    <field name="state" widget="statusbar" statusbar_visible="online,offline"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Network Details">
+                            <field name="serial_number"/>
+                            <field name="ip_address"/>
+                            <field name="timezone"/>
+                        </group>
+                        <group string="Status">
+                            <field name="last_ping"/>
+                            <field name="pending_command" invisible="not pending_command"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Update the Tree View to show the Online/Offline status -->
+    <record id="view_zk_biometric_device_tree" model="ir.ui.view">
+        <field name="name">zk.biometric.device.tree</field>
+        <field name="model">zk.biometric.device</field>
+        <field name="arch" type="xml">
+            <tree string="Biometric Devices" decoration-success="state=='online'" decoration-danger="state=='offline'">
+                <field name="name"/>
+                <field name="serial_number"/>
+                <field name="last_ping"/>
+                <field name="state" widget="badge" decoration-success="state=='online'" decoration-danger="state=='offline'"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_zk_biometric_device" model="ir.actions.act_window">
+        <field name="name">Biometric Machines</field>
+        <field name="res_model">zk.biometric.device</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            No biometric devices registered yet.
+          </p><p>
+            Machines will appear here automatically when they ping the server.
+          </p>
+        </field>
+    </record>
+    <menuitem id="menu_zk_biometric_device"
+              name="Biometric Machines"
+              parent="hr_attendance.menu_hr_attendance_configuration"
+              action="action_zk_biometric_device"
+              sequence="100"/>
+</odoo>

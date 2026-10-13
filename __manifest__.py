@@ -5,6 +5,8 @@
     'summary': 'Receive ADMS attendance push logs from biometric devices',
     'depends': ['base', 'hr_attendance'],
     'data': [
+        'security/ir.model.access.csv',
+        'views/zk_device_views.xml',
         'views/hr_employee_views.xml',
     ],
     'installable': True,
